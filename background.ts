@@ -209,10 +209,15 @@ async function saveImageToSupabase(blob, base64rep, userId, captureUrl, tabId) {
     .from(BUCKET_NAME)
     .getPublicUrl(supabaseFilename);
 
-  await uploadToSnapsie(storageUrlResponse.data.publicUrl, captureUrl, tabId);
+  await uploadToSnapsie(
+    supabaseFilename,
+    storageUrlResponse.data.publicUrl,
+    captureUrl,
+    tabId
+  );
 }
 
-async function uploadToSnapsie(imageUrl, captureUrl, tabId) {
+async function uploadToSnapsie(filename, imageUrl, captureUrl, tabId) {
   console.log("Uploading to Snapsie");
   const hostname = "God knows what";
   const url = BASE_URL + "/api/screenshots";
@@ -222,6 +227,7 @@ async function uploadToSnapsie(imageUrl, captureUrl, tabId) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      screenshot_filename: filename,
       capture_url: captureUrl,
       screenshot_url: imageUrl,
       hostname: hostname,
