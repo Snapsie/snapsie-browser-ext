@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import copy from "rollup-plugin-copy";
 
 const fetchVersion = () => {
   return {
@@ -15,7 +16,28 @@ const fetchVersion = () => {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), fetchVersion()],
+  plugins: [
+    react(),
+    fetchVersion(),
+    copy({
+      targets: [
+        {
+          src: "src/capture/capture.html",
+          dest: "dist/src/capture",
+        },
+        { src: "src/capture/capture.js", dest: "dist/src/capture" },
+        {
+          src: "src/capture/capture.css",
+          dest: "dist/src/capture",
+        },
+        {
+          src: "src/const.js",
+          dest: "dist/src",
+        },
+      ],
+      hook: "writeBundle",
+    }),
+  ],
   build: {
     outDir: "dist",
     emptyOutDir: false,

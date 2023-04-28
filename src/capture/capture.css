@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: arial;
+}
+
+#screenshot_canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: crosshair;
+    z-index: 1;
+}
+
+#screenshot_img {
+    position: relative;
+    z-index: 0;
+}
+
+#help {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    font-size: 16px;
+    padding: 3px 15px 10px 0;
+    border-radius: 3px;
+    background-color: #f9edbe;
+    border-color: #f0c36d;
+    color: #222;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    display: none;
+}
+
+#help ul {
+    margin-bottom: 10px;
+}
+
+#help li {
+    padding: 0.1em 0;
+}
+
+#help .note {
+    padding 0.5em 2em 1em 2em;
+}
+
+#dismiss {
+    color: blue;
+    margin-left: 40px;
+}
